@@ -145,6 +145,7 @@ var Autocomplete = React.createClass({
           _this.refs.input.select();
         });
       } else {
+        event.stopPropagation(); // add this to prevent submission of form
         // text entered + menu item has been highlighted + enter is hit -> update value to that of selected menu item, close the menu
         var item = this.getFilteredItems()[this.state.highlightedIndex];
         var value = this.props.getItemValue(item);
@@ -265,7 +266,8 @@ var Autocomplete = React.createClass({
     var style = {
       left: this.state.menuLeft,
       top: this.state.menuTop,
-      minWidth: this.state.menuWidth
+      minWidth: this.state.menuWidth,
+      zIndex: 100 // so it appears above other things
     };
     var menu = this.props.renderMenu(items, this.props.value, style);
     return React.cloneElement(menu, { ref: 'menu' });
