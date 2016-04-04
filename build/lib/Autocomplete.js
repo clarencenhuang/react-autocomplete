@@ -56,7 +56,7 @@ var Autocomplete = React.createClass({
   },
 
   componentWillMount: function componentWillMount() {
-    this.id = lodash.uniqueId('autocomplete-');
+    this.id = lodash.uniqueId('autocomplete-' + Math.round(100000*Math.random()));
     this._ignoreBlur = false;
     this._performAutoCompleteOnUpdate = false;
     this._performAutoCompleteOnKeyUp = false;
